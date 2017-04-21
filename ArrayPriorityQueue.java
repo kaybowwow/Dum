@@ -10,16 +10,19 @@ public class ArrayPriorityQueue{
     private ArrayList freedo;
     private int _size;
 
+    //construct empty AL with _size 0
     public ArrayPriorityQueue() {
 	freedo = new ArrayList();
 	_size = 0;
     }
 
-    public void add (int x){
+    public void add (int x){//O(n)
+	//if empty, just add x at end of AL
 	if (isEmpty() || (int)freedo.get(_size-1) < x) {
 	    freedo.add(x);
 	    _size ++;
 	}
+	//if not empty, find position and insert x at position
 	else {
 	    for (int y = 0 ; y < _size ; y ++) {
 		if ((int)freedo.get(y) >= x) {
@@ -31,18 +34,23 @@ public class ArrayPriorityQueue{
 	}
     }
 
-    public boolean isEmpty(){
+    //is the AL empty?
+    public boolean isEmpty(){//O(1)
 	return _size == 0;
     }
 
-    public int peekMin(){
+    //returns smallest int in AL
+    //if empty, return -1
+    public int peekMin(){//O(1)
 	if (isEmpty()) {
 	    return -1;
 	}
 	return (int)freedo.get(0);
     }
 
-    public int removeMin(){
+    //removes and returns smallest int in AL
+    //if empty, return -1
+    public int removeMin(){//O(n)
 	if (isEmpty()) {
 	    return -1;
 	}
@@ -51,8 +59,9 @@ public class ArrayPriorityQueue{
 	_size--;
 	return retVal;
     }
-
-    public String toString() {
+    
+    //returns contents of AL
+    public String toString() {//O(n)
 	String retStr = "";
 	for (int x = 0 ; x < _size ; x ++) {
 	    retStr += freedo.get(x);
@@ -60,6 +69,7 @@ public class ArrayPriorityQueue{
 	return retStr;
     }
 
+    
     public static void main(String[] args) {
 
 	ArrayPriorityQueue tracer = new ArrayPriorityQueue();
@@ -93,8 +103,5 @@ public class ArrayPriorityQueue{
 	System.out.println("Let's try that again. " + tracer.peekMin());
 	System.out.println("Whew! I think I hit the wall! " + tracer.removeMin());
 
-	
-	
-
-    }
-}
+    }//end main
+}//end
