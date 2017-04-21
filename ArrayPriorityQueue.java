@@ -16,7 +16,7 @@ public class ArrayPriorityQueue{
 	_size = 0;
     }
 
-    public void add (int x){//O(n)
+    public void add (int x){//O(n^2)
 	//if empty, just add x at end of AL
 	if (isEmpty() || (int)freedo.get(_size-1) < x) {
 	    freedo.add(x);
