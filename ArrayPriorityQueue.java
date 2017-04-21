@@ -5,7 +5,7 @@ HW32 -- Getting Past the Velvet Rope
 
 import java.util.ArrayList;
 
-public class ArrayPriorityQueue{
+public class ArrayPriorityQueue<T>>{
 
     private ArrayList freedo;
     private int _size;
