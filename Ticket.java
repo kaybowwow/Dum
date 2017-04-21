@@ -1,54 +1,73 @@
-import java.util.Scanner;
+// Team Dum: Kevin Bao, Jackie Woo, Datian Zhang
 
+import cs1.Keyboard;
+
+//ticket class for a help desk
 public class Ticket {
 
-    public String desc;
-    private int _ID;
-    private int priority;
     private String username;
+    private int _ID;
+    public String desc;
+    private int priority;
 
-    public Ticket() { //subject to change
-     desc = "help";
-     _ID = (int)(Math.random()*1000);
-     priority = 1;
-     username = "tracer";
+    //default constructor to construct a ticket
+    //won't really be used that often; not very useful; 
+    public Ticket() {
+	_ID = (int)(Math.random()*10000);
+	username = "User #" + _ID;
+	desc = "help";
+	priority = 1; // use a method to determine
+    }
+    
+    //overloaded constructor to construct a ticket
+    public Ticket(String name , String description) { 
+	_ID = (int)(Math.random()*10000);
+	username = name;
+	desc = description;
+	priority = 1; // use a method to determine
     }
 
-    public Ticket(String woes , String name) { //subject to change
-     desc = woes;
-     _ID = (int)(Math.random()*1000);
-     priority = 1;
-     username = name;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
     public int getID() {
         return _ID;
-    }
-
-    public int getPriority() {
-        return priority;
     }
 
     public String getName() {
         return username;
     }
 
-    public static void main (String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-        String input = sc.next();
-        //Scanner sd = new Scanner(System.in);
-        String input2 = "harddrive";
-
-        Ticket hero = new Ticket(input2 , input);
-
-        System.out.println(hero.getDesc());
-        System.out.println(hero.getID());
-        System.out.println(hero.getPriority());
-        System.out.println(hero.getName());
+    public String getDesc() {
+        return desc;
     }
 
-}
+    public int getPriority() {
+        return priority;
+    }
+
+    //returns contents of a ticket
+    public String toString() {
+	String retStr = "";
+	retStr += "\n==========Ticket #" + _ID + "==========\n\n";
+	retStr += "Name: \t\t" + username + "\n\n";
+	retStr += "Description: \t" + desc + "\n\n";
+	retStr += "Priority: \t" + priority + "\n\n";
+	retStr += "================================";
+	return retStr;
+    }
+
+    public static void main (String[] args) {
+
+	//user inputs name
+	System.out.println("Greetings. Please tell us your name.");
+	String inputName = Keyboard.readString();
+
+	//user inputs description
+	System.out.println("Hello " + inputName + ". How may I help you?");
+        String inputDesc = Keyboard.readString();
+
+        Ticket hero = new Ticket(inputName , inputDesc);
+
+	System.out.println(hero);
+
+    }//end main
+
+}//end 
