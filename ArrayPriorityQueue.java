@@ -15,9 +15,11 @@ public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
 
 	public void add (T x){
 		freedo.add(x);
+		_size++;
 	}
     public void add (int i , T x){
     	freedo.add(i, x);
+    	_size++;
     }
     
     //O(n^2)
