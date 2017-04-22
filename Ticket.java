@@ -57,10 +57,10 @@ public class Ticket {
     //returns contents of a ticket
     public String toString() {
 	String retStr = "";
-	retStr += "\n==========Ticket #" + _ID + "===========\n\n";
-	retStr += "Name: \t\t" + username + "\n\n";
-	retStr += "Description: \t" + desc + "\n\n";
-	retStr += "Priority: \t" + priority + "\n\n";
+	retStr += "\n==========Ticket #" + _ID + "===========\n";
+	retStr += "Name: \t\t" + username + "\n";
+	retStr += "Description: \t" + desc + "\n";
+	retStr += "Priority: \t" + priority + "\n";
 	retStr += "==============================";
 	return retStr;
     }

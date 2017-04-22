@@ -71,7 +71,13 @@ public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
 	_size--;
 	return retVal;
     }
-    
+
+    public T remove(int x) {
+	T retVal = freedo.get(x);
+	_size--;
+	freedo.remove(x);
+	return retVal;
+    }
     
     //returns contents of AL
     public String toString() {//O(n)

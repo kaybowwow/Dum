@@ -36,7 +36,7 @@ public class HelpDesk{
       postcond: returns a service at index num of _services
       if num is invalid, return the last service
       ---------------------------------------*/        
-    public String assignDesc(int num) {
+    public static String assignDesc(int num) {
 	if (num < _services.size()) {
 	    return _services.get(num);
 	}
@@ -64,34 +64,15 @@ public class HelpDesk{
 	System.out.println(retStr);
     }
 
-    /*---------------------------------------
-      Requests user input and creates a new ticket based on user input
-      precond: a HelpDesk is created
-      postcond: returns a new ticket 
-      ---------------------------------------*/    
-    public Ticket newRequest() {
-	//user inputs name
-	System.out.println("Greetings. Please tell us your name.");
-	String inputName = Keyboard.readString();
-
-	//user input converted into description
-	System.out.println("Hello " + inputName + ". How may I help you? Select one of our services below:");
-        printServices();
-    	int serviceNum = Keyboard.readInt();
-	String inputDesc = assignDesc(serviceNum);
-	
-    	Ticket a = new Ticket (inputName, inputDesc, serviceNum);
-	return a;
-    }
 
     /*---------------------------------------
-      precond: Ticket x
+      precond: HelpDesk is created
       postcond: adds a ticket to ArrayPriorityQueue _tickets based on priority of ticket
       ---------------------------------------*/        
     public void addTicket( Ticket x ){
 	
 	//if empty, just add x at end of AL
-	if (_tickets.isEmpty() || _tickets.get(_tickets.size()-1).getPriority() < x.getPriority() ) {
+	if (_tickets.isEmpty() || _tickets.get(_tickets.size()-1).getPriority() <= x.getPriority() ) {
 	    _tickets.add(x);
 	}
 	//if not empty, find position and insert x at position
@@ -106,21 +87,82 @@ public class HelpDesk{
 	}// else
     }// add
     
-    // takes ticket out of APQ
+   /*---------------------------------------
+      precond: HelpDesk is created
+      postcond: dequeues and returns ticket with highest priority
+      if there are no tickets, return null.
+      ---------------------------------------*/        
     public Ticket dequeue (){
-	return new Ticket();
+	if (_tickets.isEmpty()) {
+	    System.out.println("There are no tickets pending.");
+	    return null;
+	}
+	else {
+	    
+	    System.out.println(_tickets.get(0).getName() + "'s service has been granted.");
+	    Ticket retTicket = _tickets.get(0);
+	    _tickets.remove(0);
+	
+	    return retTicket;
+	}
     }
+
+    /*---------------------------------------
+      Requests user input and creates a new ticket based on user input
+      precond: a HelpDesk is created
+      postcond: returns a new ticket 
+      ---------------------------------------*/    
+    public Ticket newRequest() {
+	    
+	//user inputs name
+	System.out.println("Greetings. Please tell us your name.");
+	String inputName = Keyboard.readString();
+
+	//user input converted into description
+	System.out.println("Hello " + inputName + ". Select one of our services below (Enter the number):");
+	printServices();
+	int serviceNum = Keyboard.readInt();
+	String inputDesc = assignDesc(serviceNum);
+	
+	Ticket a = new Ticket (inputName, inputDesc, serviceNum);
+	return a;
+    }
+       	    
 
     
     public static void main (String[] args){
 	HelpDesk hDesk = new HelpDesk();
-	
-    	Ticket ticketA = hDesk.newRequest();
 
-    	hDesk.addTicket(ticketA);
+	Ticket ticketA;
 
-    	hDesk.printTickets();
+	//AI tickets
+	hDesk.addTicket(new Ticket ("Bobby Bobberson I" , assignDesc(1) , 1));
+	hDesk.addTicket(new Ticket ("Grant Grantington III" , assignDesc(3) , 3));
+	hDesk.addTicket(new Ticket ("Welch Welchingloo" , assignDesc(0) , 0));
+
+	//request will always be made until user decides not to
+	int input = 0;
+	while (input == 0) {
+	    System.out.println("Would you like to request a service? (select 0 or 1) \n0: yes\n1: no");
+	    input = Keyboard.readInt();
+	    if (input == 0) {
+		ticketA = hDesk.newRequest();
+		System.out.println("Your ticket has been added to the queue.\n");
+		hDesk.addTicket(ticketA);
+		
+		//hDesk.printTickets();
+		
+		System.out.println(hDesk.dequeue());
+		System.out.println(hDesk.dequeue());
+		System.out.println(hDesk.dequeue());
+		System.out.println(hDesk.dequeue());
+		System.out.println(hDesk.dequeue());
+		System.out.println(hDesk.dequeue());
+		System.out.println(hDesk.dequeue());
+		
+		//hDesk.printTickets();
+	    }
+	}
+	System.out.println("Goodbye!");
     }
-
-	
 }
