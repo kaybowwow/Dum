@@ -29,6 +29,14 @@ public class Ticket {
 	desc = description;
 	priority = 1; // use a method to determine
     }
+    
+    public Ticket(String name , String description, int prior) { 
+	uniqueID = _ID;
+	_ID = _ID+1;
+	username = name;
+	desc = description;
+	priority = prior; // use a method to determine
+    }
 
     public int getID() {
         return uniqueID;
@@ -58,7 +66,7 @@ public class Ticket {
     }
 
     public static void main (String[] args) {
-
+/*
 	//user inputs name
 	System.out.println("Greetings. Please tell us your name.");
 	String inputName = Keyboard.readString();
@@ -75,7 +83,7 @@ public class Ticket {
 	System.out.println(hero);
 	System.out.println(hero1);
 	System.out.println(hero2);
-
+*/
     }//end main
 
 }//end 
