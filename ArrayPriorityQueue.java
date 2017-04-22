@@ -21,6 +21,12 @@ public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
     	freedo.add(i, x);
     	_size++;
     }
+    public T get (int i){
+    	return freedo.get(i);
+    }
+    public int size(){
+    	return _size;
+    }
     
     //O(n^2)
     /*
@@ -71,12 +77,11 @@ public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
     
     //returns contents of AL
     public String toString() {//O(n)
-	String retStr = "[";
+	String retStr = "***************************** START ******************************";
 	for (int x = 0 ; x < _size ; x ++) {
-	    retStr += freedo.get(x);
-	    retStr += ",";
+	    retStr += "\n" + freedo.get(x) + "\n";
 	}
-	retStr += "]";
+	retStr += "\n***************************** FINISH ******************************";
 	return retStr;
     }
     
