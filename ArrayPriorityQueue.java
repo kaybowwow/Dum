@@ -1,11 +1,8 @@
-/*Kevin Bao
-APCS2 pd1
-HW32 -- Getting Past the Velvet Rope
-2017-04-19 */
+
 
 import java.util.ArrayList;
 
-public class ArrayPriorityQueue<T>>{
+public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
 
     private ArrayList freedo;
     private int _size;
@@ -16,16 +13,16 @@ public class ArrayPriorityQueue<T>>{
 	_size = 0;
     }
 
-    public void add (int x){//O(n^2)
+    public void add (T x){//O(n^2)
 	//if empty, just add x at end of AL
-	if (isEmpty() || (int)freedo.get(_size-1) < x) {
+	if (isEmpty() || freedo.get(_size-1).comareTo(x)) {
 	    freedo.add(x);
 	    _size ++;
 	}
 	//if not empty, find position and insert x at position
 	else {
 	    for (int y = 0 ; y < _size ; y ++) {
-		if ((int)freedo.get(y) >= x) {
+		if (freedo.get(y).compareTo(x) > 0 || freedo.get(y).compareTo(x) == 0) {
 		    freedo.add(y,x);
 		    _size++;
 		    return;
@@ -41,20 +38,20 @@ public class ArrayPriorityQueue<T>>{
 
     //returns smallest int in AL
     //if empty, return -1
-    public int peekMin(){//O(1)
+    public T peekMin(){//O(1)
 	if (isEmpty()) {
-	    return -1;
+	    return null;
 	}
-	return (int)freedo.get(0);
+	return (T)freedo.get(0);
     }
 
     //removes and returns smallest int in AL
     //if empty, return -1
-    public int removeMin(){//O(n)
+    public T removeMin(){//O(n)
 	if (isEmpty()) {
-	    return -1;
+	    return null;
 	}
-	int retVal = peekMin();
+	T retVal = peekMin();
 	freedo.remove(0);
 	_size--;
 	return retVal;
@@ -62,18 +59,21 @@ public class ArrayPriorityQueue<T>>{
     
     //returns contents of AL
     public String toString() {//O(n)
-	String retStr = "";
+	String retStr = "[";
 	for (int x = 0 ; x < _size ; x ++) {
 	    retStr += freedo.get(x);
+	    retStr += ",";
 	}
+	retStr += "]";
 	return retStr;
     }
-
+    
     
     public static void main(String[] args) {
 
-	ArrayPriorityQueue tracer = new ArrayPriorityQueue();
+	ArrayPriorityQueue<String> tracer = new ArrayPriorityQueue<String>();
 
+/*
 	System.out.println("Cheers, love! The cavalry's here! " + tracer.isEmpty() + "\n");
 	
 	tracer.add(1);
@@ -102,6 +102,6 @@ public class ArrayPriorityQueue<T>>{
 	System.out.println("Well, that just happened. " + tracer.removeMin());
 	System.out.println("Let's try that again. " + tracer.peekMin());
 	System.out.println("Whew! I think I hit the wall! " + tracer.removeMin());
-
+*/
     }//end main
 }//end
