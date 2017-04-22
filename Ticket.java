@@ -6,40 +6,40 @@ import cs1.Keyboard;
 public class Ticket {
 
     private String username;
-    private static int _ID = 1;
-    private int uniqueID;
+    private static int customerNumber = 1;
+    private int _ID;
     public String desc;
     private int priority;
 
     //default constructor to construct a ticket
     //won't really be used that often; not very useful; 
     public Ticket() {
-	uniqueID = _ID;
-	_ID = _ID+1;
-	username = "User #" + uniqueID;
+	_ID = customerNumber;
+	customerNumber ++;
+	username = "User #" + _ID;
 	desc = "help";
 	priority = 1; // use a method to determine
     }
     
     //overloaded constructor to construct a ticket
     public Ticket(String name , String description) { 
-	uniqueID = _ID;
-	_ID = _ID+1;
+	_ID = customerNumber;
+	customerNumber++;
 	username = name;
 	desc = description;
 	priority = 1; // use a method to determine
     }
     
     public Ticket(String name , String description, int prior) { 
-	uniqueID = _ID;
-	_ID = _ID+1;
+	_ID = customerNumber;
+	customerNumber++;
 	username = name;
 	desc = description;
 	priority = prior; // use a method to determine
     }
 
     public int getID() {
-        return uniqueID;
+        return _ID;
     }
 
     public String getName() {
@@ -57,11 +57,11 @@ public class Ticket {
     //returns contents of a ticket
     public String toString() {
 	String retStr = "";
-	retStr += "\n==========Ticket #" + uniqueID + "==========\n\n";
+	retStr += "\n==========Ticket #" + _ID + "===========\n\n";
 	retStr += "Name: \t\t" + username + "\n\n";
 	retStr += "Description: \t" + desc + "\n\n";
 	retStr += "Priority: \t" + priority + "\n\n";
-	retStr += "================================";
+	retStr += "==============================";
 	return retStr;
     }
 

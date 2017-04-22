@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 
 public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
@@ -81,7 +79,7 @@ public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
 	for (int x = 0 ; x < _size ; x ++) {
 	    retStr += "\n" + freedo.get(x) + "\n";
 	}
-	retStr += "\n***************************** FINISH ******************************";
+	retStr += "\n***************************** FINISH *****************************";
 	return retStr;
     }
     
