@@ -4,32 +4,41 @@ import java.util.ArrayList;
 
 public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
 
-    private ArrayList freedo;
+    private ArrayList<T> freedo;
     private int _size;
 
     //construct empty AL with _size 0
     public ArrayPriorityQueue() {
-	freedo = new ArrayList();
+	freedo = new ArrayList<T>();
 	_size = 0;
     }
 
-    public void add (T x){//O(n^2)
+	public void add (T x){
+		freedo.add(x);
+	}
+    public void add (int i , T x){
+    	freedo.add(i, x);
+    }
+    
+    //O(n^2)
+    /*
 	//if empty, just add x at end of AL
-	if (isEmpty() || freedo.get(_size-1).comareTo(x)) {
+	if (isEmpty() || compareTo(_size-1, x) < 0) {
 	    freedo.add(x);
 	    _size ++;
 	}
 	//if not empty, find position and insert x at position
 	else {
 	    for (int y = 0 ; y < _size ; y ++) {
-		if (freedo.get(y).compareTo(x) > 0 || freedo.get(y).compareTo(x) == 0) {
+		if (compareTo(y, x) > 0 || compareTo(y, x) == 0) {
 		    freedo.add(y,x);
 		    _size++;
 		    return;
 		}
 	    }
 	}
-    }
+	*/
+    
 
     //is the AL empty?
     public boolean isEmpty(){//O(1)
@@ -42,7 +51,7 @@ public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
 	if (isEmpty()) {
 	    return null;
 	}
-	return (T)freedo.get(0);
+	return freedo.get(0);
     }
 
     //removes and returns smallest int in AL
@@ -56,6 +65,7 @@ public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
 	_size--;
 	return retVal;
     }
+    
     
     //returns contents of AL
     public String toString() {//O(n)
