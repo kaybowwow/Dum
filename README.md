@@ -26,3 +26,5 @@ We used an ArrayList to store services in order or priority, so that a high-prio
 2) We make the user choose from a list of services which kind of problem they have, making prioritizing easier.
 
 3) Added non-user created tickets to the ArrayPriorityQueue of tickets to simulate an actual help desk center.
+
+4) We used the cs1 package's Keyboard class to read user inputs.
