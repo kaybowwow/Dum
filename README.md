@@ -7,7 +7,7 @@
 
 2) Users are then told to write their name if they said they needed help. Otherwise the program stops. 
 
-3) Users place their problem within a category. We then use this to assign priority.
+3) Users place their problem within a service. We then use this to assign priority.
 
 4) Users wait their turn for a solution and step 1 is repeated.
 
