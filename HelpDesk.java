@@ -32,6 +32,7 @@ public class HelpDesk{
 	_services.add("passReset");
 	_services.add("slowNetwork");
 	_services.add("coffee");
+	_services.add("Please call us at 91-391-29");
     }//end addServices
     /*---------------------------------------
       precond: _services is created
@@ -42,6 +43,7 @@ public class HelpDesk{
 	_categories.add("Account not working");
 	_categories.add("Network issue");
 	_categories.add("Beverages needed");
+	_categories.add("Other");
     }//end addServices
     /*---------------------------------------
       precond: int num
@@ -49,8 +51,14 @@ public class HelpDesk{
       if num is invalid, return the last service
       ---------------------------------------*/        
     public static String assignDesc(int num) {//O(1)
-	if (num < _categories.size() && num >=0) {
+	if (num < _categories.size()-1 && num >=0) {
 	    return _categories.get(num);
+	}
+	if(num==_categories.size()-1){
+	    System.out.println();
+	    System.out.println("What's your problem?");
+	    System.out.println();
+	    return Keyboard.readString();
 	}
 	System.out.println("Invalid selection. Default service chosen . . .");
 	return _services.get(_services.size()-1);
@@ -105,7 +113,7 @@ public class HelpDesk{
       if there are no tickets, return null.
       ---------------------------------------*/        
     public Ticket dequeue (){//O(n)
-	if (_tickets.isEmpty()) {
+	if (_tickets.size()==0) {
 	    System.out.println("There are no tickets pending.");
 	    return null;
 	}
@@ -139,18 +147,21 @@ public class HelpDesk{
     public String resolve(Ticket a){
 	return _services.get(a.getPriority());
     }
-
+    public int getSize(){
+	System.out.println(_tickets.size());
+	return _tickets.size();
+    }
     //main
     public static void main (String[] args){
 	HelpDesk hDesk = new HelpDesk();
 
-	Ticket ticketA;
 
 	//AI tickets
+	
 	hDesk.addTicket(new Ticket ("Bobby Bobberson I" , assignDesc(1) , 1));
 	hDesk.addTicket(new Ticket ("Grant Grantington III" , assignDesc(3) , 3));
 	hDesk.addTicket(new Ticket ("Welch Welchingloo" , assignDesc(0) , 0));
-
+	
 	//request will always be made until user decides not to
 	int input = 0;
 	while (input == 0) {
@@ -158,18 +169,20 @@ public class HelpDesk{
 	    input = Keyboard.readInt();
 	    if (input == 0) {
 		
-		ticketA = hDesk.newRequest();
+		Ticket ticketA = hDesk.newRequest();
 		
 		System.out.println("Your ticket has been added to the queue.\n");
 		hDesk.addTicket(ticketA);
 		//hDesk.printTickets();
 		
-		System.out.println(hDesk.dequeue());
-		System.out.println(hDesk.dequeue());
+		//System.out.println(hDesk.dequeue());
+		//	System.out.println(hDesk.dequeue());
 		
 		//hDesk.printTickets();
 	    }
 	}
-	System.out.println("Goodbye!");
+	while(hDesk.getSize() != 0){
+	    System.out.println(hDesk.dequeue());
+	}
     }//end main
 }//end class HelpDesk
