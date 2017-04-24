@@ -7,23 +7,24 @@ public class Ticket {
 
     private String username;
     private static int customerNumber = 1;
-    private int _ID;
+    private String _ID;
     public String desc;
     private int priority;
+    private String resolution;
 
     //default constructor to construct a ticket
     //won't really be used that often; not very useful; 
     public Ticket() {
-	_ID = customerNumber;
+	_ID = "EGJ2IO4EKLE" + customerNumber + "JE5GKMLE" ;
 	customerNumber ++;
-	username = "User #" + _ID;
+	username = "ID " + _ID;
 	desc = "help";
 	priority = 1; // use a method to determine
     }
     
     //overloaded constructor to construct a ticket
     public Ticket(String name , String description) { 
-	_ID = customerNumber;
+	_ID = "EMT" +  customerNumber + "DJ";
 	customerNumber++;
 	username = name;
 	desc = description;
@@ -31,14 +32,14 @@ public class Ticket {
     }
     
     public Ticket(String name , String description, int prior) { 
-	_ID = customerNumber;
+	_ID = "DDJ" + customerNumber + "KHALE" + (int)(Math.random() * 10) ; // randomized/ambiguous
 	customerNumber++;
 	username = name;
 	desc = description;
 	priority = prior; // use a method to determine
     }
 
-    public int getID() {
+    public String getID() {
         return _ID;
     }
 
@@ -57,7 +58,7 @@ public class Ticket {
     //returns contents of a ticket
     public String toString() {
 	String retStr = "";
-	retStr += "\n==========Ticket #" + _ID + "===========\n";
+	retStr += "\n==========Ticket " + _ID + "===========\n";
 	retStr += "Name: \t\t" + username + "\n";
 	retStr += "Description: \t" + desc + "\n";
 	retStr += "Priority: \t" + priority + "\n";
