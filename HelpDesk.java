@@ -118,7 +118,7 @@ public class HelpDesk{
 	    return null;
 	}
 	else {
-	    
+	    System.out.println();
 	    System.out.println(_tickets.get(0).getName() + ", we have resolved your problem by: " +  _services.get(_tickets.get(0).getPriority()));
 	    return _tickets.remove(0); // remove and return removed at same time 
 	}
@@ -148,7 +148,7 @@ public class HelpDesk{
 	return _services.get(a.getPriority());
     }
     public int getSize(){
-	System.out.println(_tickets.size());
+	//	System.out.println(_tickets.size());
 	return _tickets.size();
     }
     //main
