@@ -111,11 +111,8 @@ public class HelpDesk{
 	}
 	else {
 	    
-	    System.out.println(_tickets.get(0).getName() + "'s service has been granted.");
-	    Ticket retTicket = _tickets.get(0);
-	    _tickets.remove(0);
-	
-	    return retTicket;
+	    System.out.println(_tickets.get(0).getName() + ", we have resolved your problem by: " +  _services.get(_tickets.get(0).getPriority()));
+	    return _tickets.remove(0); // remove and return removed at same time 
 	}
     }//end dequeue
 
@@ -139,7 +136,9 @@ public class HelpDesk{
 	Ticket a = new Ticket (inputName, inputDesc, categoryNum);
 	return a;
     }//end newRequest
-       	    
+    public String resolve(Ticket a){
+	return _services.get(a.getPriority());
+    }
 
     //main
     public static void main (String[] args){
