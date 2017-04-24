@@ -8,7 +8,8 @@ public class HelpDesk{
     //stores services based on priority
     //_services.get(0) will have highest priority
     //_services.get(_services.size()-1) will have lowest priority
-    private static ArrayList<String> _services;;
+    private static ArrayList<String> _services;
+    private static ArrayList<String> _categories;
 
     /*---------------------------------------
       precond: 
@@ -16,8 +17,10 @@ public class HelpDesk{
       ---------------------------------------*/        
     public HelpDesk (){//O(1)
 	_tickets = new ArrayPriorityQueue<Ticket>();
-	_services = new ArrayList();
+	_services = new ArrayList<String>();
+	_categories = new ArrayList<String>();
 	addServices();
+	addCategories();
     }//end HelpDesk
 
     /*---------------------------------------
@@ -30,15 +33,24 @@ public class HelpDesk{
 	_services.add("slowNetwork");
 	_services.add("coffee");
     }//end addServices
-    	
+    /*---------------------------------------
+      precond: _services is created
+      postcond: adds various categories
+      ---------------------------------------*/        
+    public void addCategories() { //O(1)
+	_categories.add("Computer broke");
+	_categories.add("Account not working");
+	_categories.add("Network issue");
+	_categories.add("Beverages needed");
+    }//end addServices
     /*---------------------------------------
       precond: int num
       postcond: returns a service at index num of _services
       if num is invalid, return the last service
       ---------------------------------------*/        
     public static String assignDesc(int num) {//O(1)
-	if (num < _services.size()) {
-	    return _services.get(num);
+	if (num < _categories.size() && num >=0) {
+	    return _categories.get(num);
 	}
 	System.out.println("Invalid selection. Default service chosen . . .");
 	return _services.get(_services.size()-1);
@@ -58,8 +70,8 @@ public class HelpDesk{
       ---------------------------------------*/        
     public void printServices() {//O(n)
 	String retStr = "";
-	for (int x = 0 ; x < _services.size() ; x ++) {
-	    retStr += "\n" + x + ": " + _services.get(x);
+	for (int x = 0 ; x < _categories.size() ; x ++) {
+	    retStr += "\n" + x + ": " + _categories.get(x);
 	}
 	System.out.println(retStr);
     }//end printServices
@@ -119,12 +131,12 @@ public class HelpDesk{
 	String inputName = Keyboard.readString();
 
 	//user input converted into description
-	System.out.println("Hello " + inputName + ". Select one of our services below (Enter the number):");
+	System.out.println("Hello " + inputName + ". Select one of our categories below (Enter the number):");
 	printServices();
-	int serviceNum = Keyboard.readInt();
-	String inputDesc = assignDesc(serviceNum);
+	int categoryNum = Keyboard.readInt();
+	String inputDesc = assignDesc(categoryNum);
 	
-	Ticket a = new Ticket (inputName, inputDesc, serviceNum);
+	Ticket a = new Ticket (inputName, inputDesc, categoryNum);
 	return a;
     }//end newRequest
        	    
