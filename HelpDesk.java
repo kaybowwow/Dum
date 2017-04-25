@@ -1,3 +1,5 @@
+//Team Dum: Kevin Bao, Jackie Woo, Datian Zhang
+
 import cs1.Keyboard;
 import java.util.ArrayList;
 
@@ -34,10 +36,10 @@ public class HelpDesk{
 	_services.add("coffee");
 	_services.add("Please call us at 91-391-29");
     }//end addServices
+    
     /*---------------------------------------
       precond: _services is created
       postcond: adds various categories
-
       ---------------------------------------*/        
     public void addCategories() { //O(1)
 	_categories.add("Computer broke");
@@ -45,7 +47,8 @@ public class HelpDesk{
 	_categories.add("Network issue");
 	_categories.add("Beverages needed");
 	_categories.add("Other");
-    }//end addServices
+    }//end addCategories
+    
     /*---------------------------------------
       precond: int num
       postcond: returns a service at index num of _services
@@ -57,7 +60,7 @@ public class HelpDesk{
 	}
 	if(num==_categories.size()-1){
 	    System.out.println();
-	    System.out.println("What's your problem?");
+	    System.out.println("How may we help you?");
 	    System.out.println();
 	    return Keyboard.readString();
 	}
@@ -69,7 +72,7 @@ public class HelpDesk{
       precond: a HelpDesk is created
       postcond: prints tickets
       ---------------------------------------*/        
-    public void printTickets(){//O(n)
+    public  void printTickets(){//O(n)
 	System.out.println(_tickets);
     }//end printTickets
 
@@ -145,6 +148,7 @@ public class HelpDesk{
 	Ticket a = new Ticket (inputName, inputDesc, categoryNum);
 	return a;
     }//end newRequest
+    
     public String resolve(Ticket a){
 	return _services.get(a.getPriority());
     }
@@ -160,7 +164,6 @@ public class HelpDesk{
     public static void main (String[] args){
 	HelpDesk hDesk = new HelpDesk();
 
-
 	//AI tickets
 	
 	hDesk.addTicket(new Ticket ("Bobby Bobberson I" , assignDesc(1) , 1));
@@ -169,8 +172,8 @@ public class HelpDesk{
 	
 	//request will always be made until user decides not to
 	int input = 0;
-	while (input == 0) {
-	    System.out.println("Would you like to request a service? (select 0 or 1) \n0: yes\n1: no");
+	while (input == 0 || input == 2) {
+	    System.out.println("Would you like to request a service? (select 0 or 1) \nView tickets (select 2)\n0: Yes\n1: No\n2: View Tickets ");
 	    input = Keyboard.readInt();
 	    if (input == 0) {
 		
@@ -180,10 +183,13 @@ public class HelpDesk{
 		hDesk.addTicket(ticketA);
 		//hDesk.printTickets();
 		
-		//System.out.println(hDesk.dequeue());
+		System.out.println(hDesk.dequeue());
 		//	System.out.println(hDesk.dequeue());
 		
 		//hDesk.printTickets();
+	    }
+	    if (input == 2) {
+		hDesk.printTickets();
 	    }
 	}
 	while(hDesk.getSize() != 0){

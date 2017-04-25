@@ -19,7 +19,7 @@ public class Ticket {
 	customerNumber ++;
 	username = "ID " + _ID;
 	desc = "help";
-	priority = 1; // use a method to determine
+	priority = 3; 
     }
     
     //overloaded constructor to construct a ticket
@@ -28,22 +28,29 @@ public class Ticket {
 	customerNumber++;
 	username = name;
 	desc = description;
-	priority = 1; // use a method to determine
+	priority = 3; 
     }
     
     public Ticket(String name , String description, int prior) { 
-	_ID = "DDJ" + customerNumber + "KHALE" + (int)(Math.random() * 10) ; // randomized/ambiguous
+	_ID = "Customer #" + customerNumber;
 	customerNumber++;
 	username = name;
 	desc = description;
 	if(prior != 4){
 	    priority = prior; // use a method to determine
 	}
-	System.out.println(prior);
+	//System.out.println(prior);
 	if( prior == 4){
 	    priority=readDesc();	
 	}
     }
+
+    /*------------------------------------
+      Locates a keyword in user input that matches a category
+      Best if user input contains a keyword
+      precond: 
+      postcond: returns category number that matches keyword in user input
+      ------------------------------------*/
     public int readDesc(){
 		
 	String[] arr = desc.split(" ");
@@ -59,7 +66,7 @@ public class Ticket {
 	    if(words.equals("computer") || words.equals("network") ||words.equals( "internet")){
 		return 2;
 	    }
-	    if(words.equals("coffee") || words.equals("drink") ) {
+	    if(words.equals("coffee") || words.equals("drink") || words.equals("thirsty")) {
 		return 3;
 	    }
 	    

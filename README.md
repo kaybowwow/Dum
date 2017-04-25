@@ -23,8 +23,12 @@ We used an ArrayList to store services in order or priority, so that a high-prio
 ## Extras
 1) The ticket's toString() allows the ticket to be displayed by the terminal as an actual ticket with the user's name, description, ticket number, and priority.
 
-2) We make the user choose from a list of services which kind of problem they have, making prioritizing easier.
+2) We make the user choose from a list of categories which kind of problem they have, making prioritizing easier.
 
 3) Added non-user created tickets to the ArrayPriorityQueue of tickets to simulate an actual help desk center.
 
 4) We used the cs1 package's Keyboard class to read user inputs.
+
+5) The user can choose to either create a ticket, view the list of current tickets, or to exit the Help Desk.
+
+6) We implemented a an option at category selection that would allow the user to input any description of his/her problem. Another method would pinpoint a "keyword" in the user-inputted String. This keyword would be matched to one of the categories, and the appropriate category of the problem would be assigned to this ticket. <br>For example: User inputs "I am thirsty", Keyword found: "thirsty", Category assigned: "Beverages needed", Resolving service: "coffee"
