@@ -36,7 +36,35 @@ public class Ticket {
 	customerNumber++;
 	username = name;
 	desc = description;
-	priority = prior; // use a method to determine
+	if(prior != 4){
+	    priority = prior; // use a method to determine
+	}
+	System.out.println(prior);
+	if( prior == 4){
+	    priority=readDesc();	
+	}
+    }
+    public int readDesc(){
+		
+	String[] arr = desc.split(" ");
+	System.out.println(arr[0]);
+	for( String words: arr){
+	    if(words.equals("tech") ||words.equals( "dispatch")){
+		return 0;
+	    }
+	    if(words.equals("password" )|| words.equals( "pw") ||words.equals( "sign-in") ||
+	       words.equals("log") || words.equals("sign")){
+		return 1;
+	    }
+	    if(words.equals("computer") || words.equals("network") ||words.equals( "internet")){
+		return 2;
+	    }
+	    if(words.equals("coffee") || words.equals("drink") ) {
+		return 3;
+	    }
+	    
+	}
+	return 4;   
     }
 
     public String getID() {

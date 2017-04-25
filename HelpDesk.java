@@ -37,6 +37,7 @@ public class HelpDesk{
     /*---------------------------------------
       precond: _services is created
       postcond: adds various categories
+
       ---------------------------------------*/        
     public void addCategories() { //O(1)
 	_categories.add("Computer broke");
@@ -150,6 +151,10 @@ public class HelpDesk{
     public int getSize(){
 	//	System.out.println(_tickets.size());
 	return _tickets.size();
+    }
+
+    public int numServices(){
+	return _services.size();
     }
     //main
     public static void main (String[] args){
